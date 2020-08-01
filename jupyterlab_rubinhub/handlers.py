@@ -20,10 +20,10 @@ class RubinHub_handler(APIHandler):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.token = os.getenv("JUPYTERHUB_API_TOKEN") or ""
+        self.api_token = os.getenv("JUPYTERHUB_API_TOKEN") or ""
         self.hub_api = os.getenv("JUPYTERHUB_API_URL") or ""
         self.user = os.getenv("JUPYTERHUB_USER") or ""
-        self.headers = {"Authorization": "token {}".format(self.token)}
+        self.headers = {"Authorization": "token {}".format(self.api_token)}
 
     def delete(self):
         """
@@ -37,7 +37,7 @@ class RubinHub_handler(APIHandler):
         if not self.user:
             self.log.warning("User unknown; Hub communication impossible.")
             return
-        if not self.token:
+        if not self.api_token:
             self.log.warning("Token unknown; Hub communication impossible.")
             return
         if not self.hub_api:
