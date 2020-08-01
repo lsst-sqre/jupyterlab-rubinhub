@@ -1,6 +1,6 @@
 {
   "name": "@lsst-sqre/jupyterlab-rubinhub",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "One-stop save-and-terminate-container-and-logout.",
   "author": "Rubin Observatory DM/SQuaRE",
   "main": "lib/index.js",
