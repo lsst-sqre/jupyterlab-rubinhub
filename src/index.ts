@@ -52,57 +52,54 @@ namespace CommandIDs {
 function activateRubinHubExtension(app: JupyterFrontEnd, mainMenu: IMainMenu, docManager: IDocumentManager): void {
 
   console.log('jupyterlab-rubinhub: loaded.');
-}
-;
-console.log('jupyterlab-rubinhub: loading')
 
-let svcManager = app.serviceManager;
+  let svcManager = app.serviceManager;
 
-const { commands } = app;
+  const { commands } = app;
 
-commands.addCommand(CommandIDs.saveQuitLogout, {
-  label: 'Save all, Exit, and Log Out',
-  caption: 'Save open notebooks, destroy container, and log out',
-  execute: () => {
-    saveAndQuit(app, docManager, svcManager, true)
-  }
-});
+  commands.addCommand(CommandIDs.saveQuitLogout, {
+    label: 'Save all, Exit, and Log Out',
+    caption: 'Save open notebooks, destroy container, and log out',
+    execute: () => {
+      saveAndQuit(app, docManager, svcManager, true)
+    }
+  });
 
-commands.addCommand(CommandIDs.saveQuit, {
-  label: 'Save All and Exit',
-  caption: 'Save open notebooks and destroy container',
-  execute: () => {
-    saveAndQuit(app, docManager, svcManager, false)
-  }
-});
+  commands.addCommand(CommandIDs.saveQuit, {
+    label: 'Save All and Exit',
+    caption: 'Save open notebooks and destroy container',
+    execute: () => {
+      saveAndQuit(app, docManager, svcManager, false)
+    }
+  });
 
-commands.addCommand(CommandIDs.quitLogout, {
-  label: 'Exit Without Saving and Log Out',
-  caption: 'Destroy container and log out',
-  execute: () => {
-    justQuit(app, docManager, svcManager, true)
-  }
-});
+  commands.addCommand(CommandIDs.quitLogout, {
+    label: 'Exit Without Saving and Log Out',
+    caption: 'Destroy container and log out',
+    execute: () => {
+      justQuit(app, docManager, svcManager, true)
+    }
+  });
 
-commands.addCommand(CommandIDs.justQuit, {
-  label: 'Exit Without Saving',
-  caption: 'Destroy container',
-  execute: () => {
-    justQuit(app, docManager, svcManager, false)
-  }
-});
+  commands.addCommand(CommandIDs.justQuit, {
+    label: 'Exit Without Saving',
+    caption: 'Destroy container',
+    execute: () => {
+      justQuit(app, docManager, svcManager, false)
+    }
+  });
 
-// Add commands and menu itmes.
-let menu: Menu.IItemOptions[] =
-  [
-    { command: CommandIDs.saveQuitLogout },
-    { command: CommandIDs.saveQuit },
-    { command: CommandIDs.quitLogout },
-    { command: CommandIDs.justQuit }
-  ]
-// Put it at the bottom of file menu
-let rank = 150;
-mainMenu.fileMenu.addGroup(menu, rank);
+  // Add commands and menu itmes.
+  let menu: Menu.IItemOptions[] =
+    [
+      { command: CommandIDs.saveQuitLogout },
+      { command: CommandIDs.saveQuit },
+      { command: CommandIDs.quitLogout },
+      { command: CommandIDs.justQuit }
+    ]
+  // Put it at the bottom of file menu
+  let rank = 150;
+  mainMenu.fileMenu.addGroup(menu, rank);
 }
 
 function hubDeleteRequest(app: JupyterFrontEnd): Promise<Response> {
