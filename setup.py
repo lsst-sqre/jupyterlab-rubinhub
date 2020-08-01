@@ -5,7 +5,7 @@ interaction with JupyterHub.
 import setuptools
 
 setuptools.setup(
-    name="jupyterlab_lsstquery",
+    name="jupyterlab_rubinhub",
     version="0.0.1",
     packages=setuptools.find_packages(),
     install_requires=["notebook", "requests"],
