@@ -49,7 +49,7 @@ namespace CommandIDs {
 /**
  * Activate the jupyterhub extension.
  */
-function activateSaveQuitExtension(app: JupyterFrontEnd, mainMenu: IMainMenu, docManager: IDocumentManager): void {
+function activateRubinHubExtension(app: JupyterFrontEnd, mainMenu: IMainMenu, docManager: IDocumentManager): void {
 
   // This config is provided by JupyterHub by the single-user server app
   // via in dictionary app.web_app.settings['page_config_data'].
@@ -58,11 +58,11 @@ function activateSaveQuitExtension(app: JupyterFrontEnd, mainMenu: IMainMenu, do
   let hubUser = PageConfig.getOption('rubinHubUser');
 
   if (!hubUrl) {
-    console.log('jupyterlab-savequit: No configuration found.');
+    console.log('jupyterlab-rubinhub: No configuration found.');
     return;
   }
 
-  console.log('jupyterlab-savequit: Found configuration ',
+  console.log('jupyterlab-rubinhub: Found configuration ',
     { hubUrl: hubUrl, hubUser: hubUser });
 
   let svcManager = app.serviceManager;
@@ -104,7 +104,9 @@ function activateSaveQuitExtension(app: JupyterFrontEnd, mainMenu: IMainMenu, do
   // Add commands and menu itmes.
   let menu: Menu.IItemOptions[] =
     [
+      { command: CommandIDs.saveQuitLogout },
       { command: CommandIDs.saveQuit },
+      { command: CommandIDs.quitLogout },
       { command: CommandIDs.justQuit }
     ]
   // Put it at the bottom of file menu
@@ -185,11 +187,11 @@ function infoDialog(): Promise<void> {
 }
 
 /**
- * Initialization data for the jupyterlab_savequit extension.
+ * Initialization data for the jupyterlab_rubinhub extension.
  */
-const saveQuitExtension: JupyterFrontEndPlugin<void> = {
-  activate: activateSaveQuitExtension,
-  id: 'jupyter.extensions.jupyterlab-savequit',
+const rubinHubExtension: JupyterFrontEndPlugin<void> = {
+  activate: activateRubinHubExtension,
+  id: 'jupyter.extensions.jupyterlab-rubinhub',
   requires: [
     IMainMenu,
     IDocumentManager
@@ -197,5 +199,5 @@ const saveQuitExtension: JupyterFrontEndPlugin<void> = {
   autoStart: true,
 };
 
-export default saveQuitExtension;
+export default rubinHubExtension;
 
