@@ -53,9 +53,8 @@ function activateRubinHubExtension(app: JupyterFrontEnd, mainMenu: IMainMenu, do
 
   console.log('jupyterlab-rubinhub: loaded.');
 }
-
-console.log('jupyterlab-rubinhub: Found configuration ',
-  { hubUrl: hubUrl, hubUser: hubUser });
+;
+console.log('jupyterlab-rubinhub: loading')
 
 let svcManager = app.serviceManager;
 
